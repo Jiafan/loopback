@@ -758,20 +758,18 @@ module.exports = function(User) {
 
     // Non-realm users validation
     if (!(UserModel.settings.realmRequired || UserModel.settings.realmDelimiter)) {
-      UserModel.validatesUniquenessOf('email',
-        { message: 'Email already exists', disableInherit: true });
-      UserModel.validatesUniquenessOf('username',
-        { message: 'User already exists', disableInherit: true });
+      UserModel.validatesUniquenessOf('email', { message: 'Email already exists' });
+      UserModel.validatesUniquenessOf('username', { message: 'User already exists' });
     } else {
       // Realm users validation
       UserModel.validatesUniquenessOf('email', {
         message: 'Email already exists',
-        scopedTo: ['realm'],
-        disableInherit: true });
+        scopedTo: ['realm']
+      });
       UserModel.validatesUniquenessOf('username', {
         message: 'User already exists',
-        scopedTo: ['realm'],
-        disableInherit: true });
+        scopedTo: ['realm']
+      });
     }
 
     return UserModel;
